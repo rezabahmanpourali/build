@@ -28837,7 +28837,7 @@ ad5:function ad5(){},
 adf:function adf(a){this.a=a},
 ad7:function ad7(){},
 ad6:function ad6(a){this.a=a},
-aWS(a,b,c){var s=new A.Pr(a,b,c),r=a==null?"http://api.bnpl.medplan.ir/":a
+aWS(a,b,c){var s=new A.Pr(a,b,c),r=a==null?"https://api.bnpl.medplan.ir/":a
 s.a=A.b10(A.b0l(r,B.ra,c==null?B.ra:c))
 return s},
 b7_(a){var s="application/json"
@@ -32468,7 +32468,7 @@ m.mM(A.b10(null),t.kE)
 q=t.NK
 m.mM(A.aWS(null,B.pi,null),q)
 m.ML(A.aWS(null,B.FM,B.M9),"ApiClientV3File",q)
-m.ML(A.aWS("http://api.bnpl.medplan.ir/csp_connector/",B.pi,null),"csp",q)
+m.ML(A.aWS("https://api.bnpl.medplan.ir/csp_connector/",B.pi,null),"csp",q)
 p=t._c
 m.mM(new A.PF(m.$1$0(q)),p)
 o=t.ZZ
