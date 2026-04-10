@@ -32,6 +32,41 @@
 
   <title>rayan_kimia</title>
   <link rel="manifest" href="manifest.json">
+
+  <script>
+    (function () {
+      var blockedUrl = "https://fonts.gstatic.com/s/roboto/v32/KFOmCnqEu92Fr1Me4GZLCzYlKw.woff2";
+
+      // مسدودسازی در Fetch API
+      var originalFetch = window.fetch;
+      window.fetch = function () {
+        var url = arguments[0];
+        if (typeof url === 'string' && url.indexOf(blockedUrl) !== -1) {
+          console.warn("Blocked fetch request to: " + url);
+          return Promise.resolve(new Response(new ArrayBuffer(0), { status: 404, statusText: 'Blocked' }));
+        }
+        return originalFetch.apply(this, arguments);
+      };
+
+      var originalOpen = XMLHttpRequest.prototype.open;
+      XMLHttpRequest.prototype.open = function (method, url) {
+        if (typeof url === 'string' && url.indexOf(blockedUrl) !== -1) {
+          this._isBlocked = true;
+        }
+        return originalOpen.apply(this, arguments);
+      };
+
+      var originalSend = XMLHttpRequest.prototype.send;
+      XMLHttpRequest.prototype.send = function () {
+        if (this._isBlocked) {
+          console.warn("Blocked XHR request to: " + blockedUrl);
+          this.abort();
+          return;
+        }
+        return originalSend.apply(this, arguments);
+      };
+    })();
+  </script>
 </head>
 
 <body>
